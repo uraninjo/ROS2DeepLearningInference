@@ -1,19 +1,16 @@
+import tensorflow as tf
 from tensorflow.keras.models import load_model
-class TFInference:
-    def __init__(self, path, model_type):
+class TFInference():
+    def __init__(self, path):
         self.path = path
-        self.requsted_model_type = model_type
-
-        model_types = {"classification": self.inference(path=self.path),
-                        "object_detection": self.inference(path=self.path)}
-        model_types[self.requsted_model_type]
-
-    def inference(self, path):#TODO: Additional changes will be made later!
-        model = load_model(path)
-        return model
+    def inference_generator(self, data):#TODO: Additional changes will be made later!
+        model = load_model(self.path)
+        data = tf.expand_dims(data, axis = 0)
+        results = model.predict(data).tolist()
+        metadata = dict()
+        metadata["classification"] = results[0]
+        if len(results)>1:
+            metadata["detections"] = results[1]
+        return metadata
 
 #TODO: Eğer weight gönderilirse bir talimat ver.
-
-
-
-    

@@ -1,2 +1,7 @@
 ros2_inference_ws/.vscode
 ros2_inference_ws/log
+ros2_inference_ws/build
+ros2_inference_ws/install
+ros2_inference_ws/src/uraninjo_inference_node/uraninjo_inference_node/__pycache__/
+ros2_inference_ws/src/uraninjo_inference_node/uraninjo_inference_node/torch_resnet50.h5
+ros2_inference_ws/src/uraninjo_inference_node/uraninjo_inference_node/vgg.h5

@@ -4,7 +4,7 @@
   <name>uraninjo_inference_node</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="">uraninjo</maintainer>
+  <maintainer email="mehmurat12@gmail.com">uraninjo</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
