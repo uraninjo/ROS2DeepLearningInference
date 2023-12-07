@@ -63,7 +63,11 @@ class InferenceNode(Node):
         #     self.onnx_model = OnnxInference(path=ONNX_PATH)
         #     self.onnx_topic = self.create_publisher(String, '/onnx_inference_result', 10)
         #     self.get_logger().info("ONNX Node is activated!")
-        self.timer = self.create_timer(3, self.compute) 
+        if self.PYTORCH_BOOL + self.TF_BOOL + self.ONNX_BOOL > 0:
+            self.timer = self.create_timer(3, self.compute)
+        else:
+            self.get_logger().info("Nothing is activated. Exiting!")
+            sys.exit()
 
     def compute(self):
         if not self.Input_Image is None:
@@ -97,8 +101,6 @@ class InferenceNode(Node):
     
     def image_sub_cb(self, image_msg):
         self.Input_Image = self.bridge.imgmsg_to_cv2(image_msg)
-        import cv2 
-        cv2.imwrite("./aa.png", self.Input_Image)
         #print("Got the Image!\n\n")
 
 def main():
@@ -106,35 +108,6 @@ def main():
     node = InferenceNode()
     rclpy.spin(node)
     rclpy.shutdown()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
